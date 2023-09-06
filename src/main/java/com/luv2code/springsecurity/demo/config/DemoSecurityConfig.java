@@ -28,6 +28,7 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()//we're going to restrict access based on the HttpServletRequest coming in
+			.antMatchers("/css/**").permitAll() //enable static resources loaded without authentication
 			.anyRequest().authenticated() //any request to the app must be authenticated (ie logged in)
 			.and().formLogin()
 			.loginPage("/showMyLoginPage") //show our custom form at the request mapping
